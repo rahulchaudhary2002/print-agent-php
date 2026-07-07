@@ -19,11 +19,23 @@ actually reaches a printer is produced by the agent itself.
 
 ## Installation
 
-```bash
-composer require print-agent/print-agent-php
+Not on Packagist (the repo is private) — install directly from git. Add to the consuming app's
+`composer.json`:
+
+```json
+{
+    "repositories": [
+        {"type": "vcs", "url": "git@github.com:rahulchaudhary2002/print-agent-php.git"}
+    ]
+}
 ```
 
-Auto-discovered — no manual provider/facade registration needed.
+```bash
+composer require print-agent/print-agent-php:^1.0
+```
+
+See [Installation Guide](docs/installation.md) for details. Auto-discovered once installed —
+no manual provider/facade registration needed.
 
 ## Quick example
 
@@ -102,15 +114,19 @@ needed to run it. `tests/Unit/Builders/DocumentBuilderTest.php` in particular ve
 generated JSON byte-for-byte matches what the agent's own document engine expects (including
 easy-to-miss details like an empty style object serializing as `{}`, not `[]`).
 
-## Publishing to Packagist
+## Installing today vs. publishing to Packagist later
 
-1. Push this repository to GitHub (or your registry of choice) under the name in `composer.json`
-   (`print-agent/print-agent-php`) — update the `name`/`authors`/repository URL fields first if
-   publishing under a different vendor.
-2. Tag a release: `git tag v1.0.0 && git push --tags`.
-3. Submit the repository at [packagist.org/packages/submit](https://packagist.org/packages/submit).
-4. Enable the GitHub webhook Packagist provides so future tags publish automatically.
-5. Consumers then install with `composer require print-agent/print-agent-php`.
+Currently installed via the git VCS repository method (see [Installation](#installation) above)
+since the repo at `github.com/rahulchaudhary2002/print-agent-php` is private — a `v1.0.0` tag is
+already pushed for consumers to pin to.
+
+If this is ever made public, publishing to Packagist properly is just:
+
+1. Make the GitHub repo public.
+2. Submit it at [packagist.org/packages/submit](https://packagist.org/packages/submit).
+3. Enable the GitHub webhook Packagist provides so future tags publish automatically.
+4. Consumers can then drop the `repositories` block and just run
+   `composer require print-agent/print-agent-php`.
 
 ## License
 

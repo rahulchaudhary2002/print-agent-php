@@ -8,12 +8,35 @@
 
 ## Install via Composer
 
-```bash
-composer require print-agent/print-agent-php
+This package is **not published on Packagist** (the GitHub repository is private). Install it
+directly from the git repository instead: add a `repositories` entry to the *consuming* Laravel
+app's `composer.json` pointing at the repo, then require it as normal.
+
+```json
+{
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "git@github.com:rahulchaudhary2002/print-agent-php.git"
+        }
+    ]
+}
 ```
 
+```bash
+composer require print-agent/print-agent-php:^1.0
+```
+
+Composer clones the repo via git (using whatever SSH key/deploy key has access to it) instead of
+looking it up on Packagist. This works for a private repo — anyone installing it needs their own
+SSH access to `rahulchaudhary2002/print-agent-php`, the same way you'd grant a collaborator
+access to any other private repo.
+
+If this package is ever made public and submitted to Packagist, the `repositories` block above
+becomes unnecessary and a plain `composer require print-agent/print-agent-php` will work instead.
+
 Laravel's package auto-discovery registers `PrintAgentServiceProvider` and the `PrintAgent`
-facade automatically — no manual registration needed in `config/app.php`.
+facade automatically either way — no manual registration needed in `config/app.php`.
 
 ## Publish the configuration (optional)
 

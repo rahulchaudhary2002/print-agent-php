@@ -1,0 +1,65 @@
+{
+    "name": "print-agent/print-agent-php",
+    "description": "Official Laravel/PHP SDK for the Universal Print Agent — a local HTTP API client and document builder. Contains no printer drivers or ESC/POS generation; all rendering happens in the Print Agent itself.",
+    "type": "library",
+    "license": "MIT",
+    "keywords": ["laravel", "print-agent", "printing", "escpos", "receipt", "pos", "thermal-printer"],
+    "authors": [
+        {
+            "name": "Print Agent",
+            "email": "support@example.invalid"
+        }
+    ],
+    "require": {
+        "php": "^8.2",
+        "illuminate/support": "^11.0|^12.0",
+        "illuminate/http": "^11.0|^12.0",
+        "illuminate/contracts": "^11.0|^12.0"
+    },
+    "require-dev": {
+        "orchestra/testbench": "^9.0|^10.0",
+        "pestphp/pest": "^2.36|^3.0",
+        "pestphp/pest-plugin-laravel": "^2.4|^3.0",
+        "phpstan/phpstan": "^1.11",
+        "larastan/larastan": "^2.9|^3.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "PrintAgent\\Sdk\\": "src/"
+        },
+        "files": [
+            "src/Support/helpers.php"
+        ]
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "PrintAgent\\Sdk\\Tests\\": "tests/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "PrintAgent\\Sdk\\Providers\\PrintAgentServiceProvider"
+            ],
+            "aliases": {
+                "PrintAgent": "PrintAgent\\Sdk\\Facades\\PrintAgent"
+            }
+        }
+    },
+    "scripts": {
+        "test": "pest",
+        "analyse": "phpstan analyse",
+        "check": [
+            "@analyse",
+            "@test"
+        ]
+    },
+    "minimum-stability": "stable",
+    "prefer-stable": true,
+    "config": {
+        "sort-packages": true,
+        "allow-plugins": {
+            "pestphp/pest-plugin": true
+        }
+    }
+}
